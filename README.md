@@ -35,8 +35,8 @@ Prerrequisitos
     
 1. Clonar el repositorio
 Abre tu terminal y clona este proyecto en tu máquina local:
-git clone https://github.com/juancarlospalaciosavila123/Sistema-Integrador-de-Agricultura-de-Precisi-n.git
-cd Sistema-Integrador-de-Agricultura-de-Precisi-n
+git clone https://github.com/juancarlospalaciosavila123/Sistema_Integrador_de_Agricultura_de_Precision.git
+cd Sistema_Integrador_de_Agricultura_de_Precision
 
 2. Crear un entorno virtual (Recomendado)
 Para evitar conflictos de dependencias, crea y activa un entorno virtual de Python:
