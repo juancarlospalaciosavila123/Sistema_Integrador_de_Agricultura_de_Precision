@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema NDVI Agricultura</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Sistema Integrador de Agricultura de Precisión</h1>
+    </header>
+
+    <main>
+        <section id="controls-section">
+            <div id="controls-container">
+                <h2>Configuración</h2>
+                
+                <div id="controls">
+                    <div class="control-group">
+                        <label>📍 Ubicación del Centro:</label>
+                        <div style="display: flex; gap: 5px; margin-bottom: 5px;">
+                            <input type="number" id="latInput" placeholder="Latitud" step="0.00001">
+                            <input type="number" id="lngInput" placeholder="Longitud" step="0.00001">
+                        </div>
+                        <p id="placeName" style="font-size: 0.85em; color: #2980b9; margin: 0; font-weight: bold;">
+                            <span style="color:#999;">Mueve el mapa...</span>
+                        </p>
+                    </div>
+    
+                    <div class="control-group">
+                        <label for="startDate">Fecha inicial:</label>
+                        <input type="date" id="startDate" min="2014-01-01">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="endDate">Fecha final:</label>
+                        <input type="date" id="endDate" min="2014-01-01">
+                    </div>
+
+                    <div class="control-group">
+                        <label for="radiusSlider">Radio del Área: <span id="radiusLabel" style="color: #3f51b5;">0.5 km</span></label>
+                        <input type="range" id="radiusSlider" min="500" max="5000" step="100" value="500">
+                    </div>
+    
+                    <button id="calculateBtn">Calcular Estudio</button>
+                </div>
+                
+                <div class="control-group" style="margin-top: 30px; border-top: 2px dashed #ccc; padding-top: 20px;">
+                    <h3 style="color: #d35400; font-size: 1.1em; margin-top: 0;">🔔 Alerta de Deforestación</h3>
+                    <p style="font-size: 0.8em; color: #666;">
+                        Recibe un correo si el NDVI baja drásticamente (0.02) en esta zona.
+                    </p>
+                    
+                    <input type="email" id="emailInput" placeholder="tu@correo.com" style="margin-bottom: 5px;">
+                    
+                    <button id="btnGuardarMonitoreo" style="background-color: #e67e22; color: white;">
+                        📡 Activar Vigilancia
+                    </button>
+
+                    <div style="margin-top: 10px;">
+                        <button id="btnSimulacro" style="background-color: #607d8b; color: white; font-size: 0.8em; padding: 5px;">
+                            🧪 Enviar Alerta de Prueba (Simulacro)
+                        </button>
+                    </div>
+                </div>
+
+                <div id="results-panel" class="results-panel">
+                    <h3>Resultados</h3>
+                    <p id="aoi-area" style="font-size: 0.9em; color: #555;">Área: --</p>
+                    <div id="results-content">
+                        <p style="color: #999; text-align: center;">Los resultados aparecerán aquí.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map-section">
+            <div id="map"></div>
+            <div id="info"></div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-geometryutil"></script> 
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
