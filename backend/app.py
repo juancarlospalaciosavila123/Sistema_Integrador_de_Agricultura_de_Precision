@@ -1,3 +1,9 @@
+import os
+from dotenv import load_dotenv
+
+# Cargar variables de entorno desde el archivo .env ANTES de inicializar el resto
+load_dotenv()
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -14,7 +20,7 @@ from database import cargar_db, guardar_db, limpiar_datos_json
 app = Flask(__name__)
 CORS(app)
 
-# Inicializar Google Earth Engine
+# Inicializar Google Earth Engine (ahora leerá desde el .env)
 init_gee()
 
 # --- VIGILANTE (VERSIÓN FINAL BLINDADA) ---

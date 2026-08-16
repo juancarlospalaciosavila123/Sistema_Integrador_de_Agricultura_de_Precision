@@ -1,5 +1,6 @@
 import smtplib
 import requests
+import os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
@@ -53,6 +54,14 @@ def generar_html(tipo, ndvi_ayer, ndvi_hoy, lat, lng):
     return f"[{tipo}] Reporte Satelital", html
 
 def enviar_correo(destinatario, asunto, html):
+    # Lectura dinámica de credenciales desde el entorno
+    email_remitente = os.getenv('EMAIL_REMITENTE')
+    email_password = os.getenv('EMAIL_PASSWORD')
+    
+    if not email_remitente or not email_password:
+        print("❌ Error: Faltan credenciales de correo (EMAIL_REMITENTE o EMAIL_PASSWORD) en las variables de entorno.")
+        return
+    
     try:
         msg = MIMEMultipart()
         msg['From'] = EMAIL_REMITENTE

@@ -1,9 +1,18 @@
 import ee
-from config import CLOUD_COVER_MAX, MIN_NDVI, MAX_NDVI, NDVI_PALETTE, GEE_PROJECT
+import os
+# Se eliminó GEE_PROJECT de la importación
+from config import CLOUD_COVER_MAX, MIN_NDVI, MAX_NDVI, NDVI_PALETTE
 
 def init_gee():
+    # Lectura dinámica del ID del proyecto desde el entorno
+    gee_project = os.getenv('GEE_PROJECT')
+    
+    if not gee_project:
+        print("❌ Error: Falta GEE_PROJECT en las variables de entorno.")
+        return
+        
     try:
-        ee.Initialize(project=GEE_PROJECT)
+        ee.Initialize(project=gee_project)
         print("✅ GEE Conectado")
     except Exception as e:
         print(f"❌ Error GEE: {e}")
